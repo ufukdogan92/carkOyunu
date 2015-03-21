@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Çark Çevirme Oyunu</title>
+    <link rel="stylesheet" href="css/style.css"/>
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu:400,700,500' rel='stylesheet' type='text/css'>
+    <script src="js/jquery.js"></script>
+
+    <script>
+
+        var puan = 250,istenenSayi1,istenenSayi2,istenenSayi3,istenenSayi4,girilenSayi1,girilenSayi2,girilenSayi3,girilenSayi4,sayac,sonuc;
+
+
+
+        $(document).ready(function() {
+
+            function sayiUret(){
+
+                istenenSayi1 = Math.floor((Math.random() * 10) + 1);
+
+                istenenSayi2 = Math.floor((Math.random() * 10) + 1);
+                while(istenenSayi2==istenenSayi1){
+                    istenenSayi2 = Math.floor((Math.random() * 10) + 1);
+                }
+
+
+
+                istenenSayi3 = Math.floor((Math.random() * 10) + 1);
+                while(istenenSayi3==istenenSayi1 || istenenSayi3==istenenSayi2){
+                    istenenSayi3 = Math.floor((Math.random() * 10) + 1);
+                }
+
+                istenenSayi4 = Math.floor((Math.random() * 10) + 1);
+                while(istenenSayi4==istenenSayi1 || istenenSayi4==istenenSayi2 || istenenSayi4==istenenSayi3){
+                    istenenSayi4 = Math.floor((Math.random() * 10) + 1);
+                }
+
+            }
+
+
+
+            $(".sayilariGonder").click(function() {
+                girilenSayi1 = $( "#sayi1" ).val();
+                girilenSayi2 = $( "#sayi2" ).val();
+                girilenSayi3 = $( "#sayi3" ).val();
+                girilenSayi4 = $( "#sayi4" ).val();
+
+                sayac = karsilastir();
+
+                $(".sayilar").slideUp();
+
+
+                if(sonuc==1){
+                    if(sayac>0){
+                        puan = puan +50;
+                        $("#puan").html("Tebrikler 50 puan eklendi. Puanınız: <span id='point'>"+puan+"</span>");
+                    }
+                    else $("#puan").html("Puan = <span id='point'>"+puan+"</span> <br /> (üzgünüm bilemediniz..)");
+                }
+                else if(sonuc==2){
+                    if(sayac>1){
+                        puan = puan +150;
+                        $("#puan").html(puan);
+                        $("#puan").html("Tebrikler 100 puan eklendi. Puanınız: <span id='point'>"+puan+"</span>");
+
+                    }
+                    else $("#puan").html("Puan = <span id='point'>"+puan+"</span> <br /> (üzgünüm bilemediniz..)");
+
+                }
+                else if(sonuc==3){
+                    if(sayac>2){
+                        puan = puan +250;
+                        $("#puan").html(puan);
+                        $("#puan").html("Tebrikler 250 puan eklendi. Puanınız:  <span id='point'>"+puan+"</span>");
+                    }
+                    else $("#puan").html("Puan = <span id='point'>"+puan+"</span> <br /> (üzgünüm bilemediniz..)");
+
+                }
+
+
+            });
+
+
+
+            function karsilastir(){
+                var toplam=0;
+                if(girilenSayi1==istenenSayi1 || girilenSayi1==istenenSayi2 || girilenSayi1==istenenSayi3 || girilenSayi1==istenenSayi4){
+                    toplam = toplam+1;
+                }
+
+                if(girilenSayi2==istenenSayi1 || girilenSayi2==istenenSayi2 || girilenSayi2==istenenSayi3 || girilenSayi2==istenenSayi4){
+                    if(girilenSayi2!=girilenSayi1) toplam = toplam+1;
+                }
+
+                if(girilenSayi3==istenenSayi1 || girilenSayi3==istenenSayi2 || girilenSayi3==istenenSayi3 || girilenSayi3==istenenSayi4){
+                    if((girilenSayi3!=girilenSayi2) && (girilenSayi3!=girilenSayi1)) toplam = toplam+1;
+                }
+
+                if(girilenSayi4==istenenSayi1 || girilenSayi4==istenenSayi2 || girilenSayi4==istenenSayi3 || girilenSayi4==istenenSayi4){
+                    if((girilenSayi4!=girilenSayi1) && (girilenSayi4!=girilenSayi2) && (girilenSayi4!=girilenSayi3)) toplam = toplam+1;
+                }
+                return toplam;
+            }
+
+
+            $(".carkDondur").click(function() {
+                // $(".carkDondur").hide();
+                setTimeout(function () {
+                    $(".sayilar").slideDown();
+                }, 1500);
+                sayiUret();
+
+                var i;
+                for(i=1;i<3;i++) {
+                    setTimeout(function () {
+                        $('.cark1').css('background', 'rgba(77, 255, 5, 0.36)');
+                    }, 50*i);
+
+                    setTimeout(function () {
+                        $('.cark1').css('background', 'rgba(0, 0, 0, 0.25');
+                    }, 100*i);
+
+                    setTimeout(function () {
+                        $('.cark2').css('background', 'rgba(77, 255, 5, 0.36)');
+                    }, 150*i);
+
+                    setTimeout(function () {
+                        $('.cark2').css('background', 'rgba(0, 0, 0, 0.25');
+                    }, 200*i);
+
+                    setTimeout(function () {
+                        $('.cark3').css('background', 'rgba(77, 255, 5, 0.36)');
+                    }, 250*i);
+
+                    setTimeout(function () {
+                        $('.cark3').css('background', 'rgba(0, 0, 0, 0.25');
+                    }, 300*i);
+
+
+                    setTimeout(function () {
+                        $('.cark4').css('background', 'rgba(77, 255, 5, 0.36)');
+                    }, 350*i);
+
+                    setTimeout(function () {
+                        $('.cark4').css('background', 'rgba(0, 0, 0, 0.25');
+                    }, 400*i);
+
+                    setTimeout(function () {
+                        $('.cark5').css('background', 'rgba(77, 255, 5, 0.36)');
+                    }, 450*i);
+
+                    setTimeout(function () {
+                        $('.cark5').css('background', 'rgba(0, 0, 0, 0.25');
+                    }, 500*i);
+
+                    setTimeout(function () {
+                        $('.cark6').css('background', 'rgba(77, 255, 5, 0.36)');
+                    }, 200*i);
+
+                    setTimeout(function () {
+                        $('.cark6').css('background', 'rgba(0, 0, 0, 0.25');
+                    }, 350*i);
+
+
+                }
+
+
+                sonuc =  Math.floor((Math.random() * 6) + 1);
+
+
+                if(sonuc==1){
+                    setTimeout(function () {
+                        $(".cark1").css("background-color","rgba(77, 255, 5, 0.36)");
+                        $("#sayiSecenek").html("4 Sayı seçmelisiniz (50 puan için 1 doğru tahmin gerekiyor)");
+                        $("#secenekler").slideDown();
+                        $(".sayilariGonder").slideDown();
+                    }, 1401);
+                }
+                else if(sonuc==2){
+                    setTimeout(function () {
+                        $(".cark2").css("background-color","rgba(77, 255, 5, 0.36)");
+                        $("#sayiSecenek").html("4 Sayı seçmelisiniz (100 puan için 2 doğru tahmin gerekiyor)");
+                        $("#secenekler").slideDown();
+                        $(".sayilariGonder").slideDown();
+                    }, 1401);
+
+                }
+                else if(sonuc==3){
+                    setTimeout(function () {
+                        $(".cark3").css("background-color","rgba(77, 255, 5, 0.36)");
+                        $("#sayiSecenek").html("4 Sayı seçmelisiniz (250 puan için 3 doğru tahmin gerekiyor)");
+                        $("#secenekler").slideDown();
+                        $(".sayilariGonder").slideDown();
+                    }, 1401);
+
+                }
+                else if(sonuc==4){
+                    setTimeout(function () {
+                        $(".cark4").css("background-color","rgba(77, 255, 5, 0.36)");
+                        $("#sayiSecenek").html("İFLAS GELDİ");
+                        $("#secenekler").slideUp();
+                        $(".sayilariGonder").slideUp();
+                        $(".oyunBasi").fadeOut(500);
+                        $(".oyunSonu").fadeIn(500)
+                    }, 1401);
+
+                }
+                else if(sonuc==5){
+                    setTimeout(function () {
+                        $(".cark5").css("background-color","rgba(77, 255, 5, 0.36)");
+                        $("#sayiSecenek").html("PAS GELDİ");
+
+                        $("#secenekler").slideUp();
+                        $(".sayilariGonder").slideUp();
+                        $("#puan").html("Puan = <span id='point'>"+puan+"</span>");
+                    }, 1401);
+
+                }
+                else if(sonuc==6){
+                    setTimeout(function () {
+                        $(".cark6").css("background-color","rgba(77, 255, 5, 0.36)");
+                        $("#sayiSecenek").html("Puan Azaltma Geldi");
+                        $("#secenekler").slideUp();
+                        $(".sayilariGonder").slideUp();
+                        puan=puan-(puan*0.25);
+                        $("#puan").html("Puan = <span id='point'>"+puan+"</span>");
+                    }, 1401);
+
+
+                }
+
+
+
+            });
+
+        })
+    </script>
+</head>
+<body>
+
+<div class="oyunSonu" style="font-size: 50px; text-align: center; padding-top: 300px; display: none">Oyun Sonlandi..</div>
+<div class="oyunBasi">
+
+<div class="carkDondur">Çarkı Döndür</div>
+<div class="cark1 cark">50 Puan</div>
+<div class="cark2 cark">100 Puan</div>
+<div class="cark3 cark">250 Puan</div>
+<div class="cark4 cark">İFLAS</div>
+<div class="cark5 cark">PAS</div>
+<div class="cark6 cark">PUAN AZALTMA</div>
+
+<div class="temizle"></div>
+
+
+<div class="sayilar">
+
+    <div id="sayiSecenek">4 Sayı seçmelisiniz</div>
+    <div id="secenekler">
+        <select name="sayi1" id="sayi1" class="sayi">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+        </select>
+
+        <select name="sayi2"  id="sayi2" class="sayi">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+        </select>
+
+        <select name="sayi3"   id="sayi3"  class="sayi">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+        </select>
+
+
+        <select name="sayi4"  id="sayi4"  class="sayi">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+        </select>
+    </div>
+
+    <div class="sayilariGonder">Sayilari Gönder</div>
+
+    <div class="temizle"></div>
+</div>
+<div class="temizle"></div>
+
+<div id="puan">Puanınız: <span id="point">250</span></div>
+</div>
+</body>
+</html>
