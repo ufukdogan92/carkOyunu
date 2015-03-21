@@ -1,0 +1,85 @@
+body{
+    margin: auto;
+    background: rgba(154, 212, 255, 0);
+    font-family: 'Ubuntu';
+}
+
+.cark{
+    float: left;
+    width: 27%;
+    background: rgba(0, 0, 0, 0.25);
+    /* background: rgba(77, 255, 5, 0.36); */
+
+    margin: 1%;
+    height: 50%;
+    padding:2%;
+    border-radius: 40%;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    font-size: 35px;
+}
+
+.carkDondur{
+    width: 200px;
+    margin: auto;
+    padding: 20px;
+    text-align: center;
+    background: rgba(255, 1, 0, 0.67);
+    border-radius: 20px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+.carkDondur:hover{
+    background: #ff0100;
+}
+
+#puan{
+    text-align: center;
+    font-size: 25px;
+    padding: 25px;
+}
+
+.temizle{
+    clear: both;
+}
+
+ #point{
+    color: #ff0100;
+    font-size: 30px;
+}
+
+ .sayilar{
+     width: 270px;
+     margin: auto;
+     text-align: center;
+     display: none;
+ }
+
+ .sayi{
+     padding: 3px;
+     background: #CCC;
+     border-radius: 5px;
+     float: left;
+     margin: 3px;
+     text-align: center;
+     width: 60px;
+     cursor: pointer;
+ }
+
+ #sayiSecenek{
+     padding: 4px;
+ }
+
+
+ .sayilariGonder{
+     margin: 10px;
+     background: #CCC;
+     border-radius: 10px;
+     clear:both;
+     width: 150px;
+     padding: 5px;
+     text-align: center;
+     margin: auto;
+     cursor: pointer;
+ }
